@@ -1,0 +1,90 @@
+<!doctype html>
+<html ng-app="UserApp">
+<head>
+    <title>Image Viewer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.min.css">
+ <script type="text/javascript" src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.3.js"></script>
+      <script>
+      var UserApp = angular.module('UserApp', []);
+    UserApp.controller('Hello', ['$scope', '$http', function($scope, $http){
+    
+        $http.get('http://localhost:8081/view').then(function(response) {
+          console.log(response);
+                $scope.users= response.data;
+            });
+  }]);
+  
+      </script>
+      
+     <style>
+
+
+
+select, option, h1{
+color:black;
+}
+</style>
+<body>
+ <nav class="navbar navbar-default" role="navigation" style="padding-left:130px;">
+
+<div class="container-fluid">
+
+<!-- Logo -->
+<div class="navbar-header">
+<a href="http://localhost:8082/viewImage2.html" class="navbar-brand">Image Viewer</a>
+</div>
+
+<!-- Menu Items -->
+<div>
+<ul class="nav navbar-nav">
+<li>
+<a href="http://localhost:8081/register">Register User</a>
+</li>
+<li>
+<a href="http://localhost:8081/delete">Delete User</li></a>
+<li class="active">
+<a href="http://localhost:8081/viewall">View all User</li></a>
+
+<li>
+<a href="http://localhost:8081/logout">Logout</li></a>
+</ul>
+</nav>
+</div>
+<div ng-controller='Hello'>
+<label> Search: </label>
+<select ng-model="searchBox.username" style="width:20%">
+
+      <option ng-repeat="x in users" value="{{x.username}}">{{x.username}}</option>
+      </select>
+<br>
+<br>
+      <table border = 1 class="table table-striped table-hover" style="width:50%">
+        <thead>
+          <tr>
+            <th>Userid</th>
+            <th>Username</th>
+            
+           
+          </tr>
+        </thead>
+
+        <tbody>
+         
+          
+<tr ng-repeat="user in users | filter:searchBox | orderBy:'+username'">            
+         <td>{{user._id}}</td>
+            <td>{{user.username}}</td>
+           
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

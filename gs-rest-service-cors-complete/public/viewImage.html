@@ -1,0 +1,104 @@
+
+<html ng-app="camListApp">
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="hello.js"></script>
+  <script src="dirPagination.js"></script> 
+<link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.min.css">
+ <script type="text/javascript" src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.3.js"></script>
+ 
+<style>
+option, select
+{
+color:black;
+
+}
+
+
+
+</style>
+ 
+  <title>Image Views</title>
+</head>
+
+<body>
+    
+    <div class="container-fluid">
+   
+    <h1><a href="http://localhost:8082/viewImage.html"><span class="glyphicon glyphicon-home
+    ">Image Viewer</span></a></h1>
+    <p align="right">
+    <input type="button" class="btn btn-primary" onclick="location.href='http://localhost:8081';" value="Logout" /></p>
+   </div>
+   
+    <div ng-controller="Hello" class="col-xs-12">
+    
+    
+ <b>Search by location:</b>
+     <select ng-model="searchBox.location" style="width:20%">
+
+      <option ng-repeat="x in locations" value="{{x.location}}">{{x.location}}</option>
+      </select>  
+      <!--  <input type = "text" ng-model="searchBox" placeholder="location" uib-typeahead="state.location as state.location for state in records  | filter:searchBox | limitTo:8 | unique:'location'">-->
+
+ <b>Search by cameraid:</b>
+ <input type = "text" ng-model="searchBox1" placeholder="cameraid" uib-typeahead="state.cameraid as state.cameraid for state in records  | filter:searchBox | limitTo:8 | unique:'cameraid'">
+
+   <b>Search by timestamp:</b>
+  <input type = "text" ng-model="searchBox2" placeholder="(yyyy-MM-dd hh:mm)" uib-typeahead="state.timestamp as state.timestamp for state in records  | filter:searchBox | unique:'timestamp'">
+ <!-- <select ng-model="searchBox.cameraid" style="width:25%">
+      <option ng-repeat="x in records | unique:'cameraid'" value="{{x.cameraid}}">{{x.cameraid}}</option>
+      </select> -->
+    <br>
+    <br>
+    <br>
+    <br>
+     <table border = 1 class="table table-striped table-hover" style="width:90%">
+        <thead>
+          <tr>
+            <th>Image</th>
+         
+            <th>CamID</th>
+            <th>Timestamp</th>
+            <th>View image</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr dir-paginate="record in records | filter:searchBox | filter:searchBox2 | filter:searchBox1 | itemsPerPage:5 | orderBy:'+timestamp'">
+          
+           <td><img ng-src="http://localhost:9100/image/{{record.filename}}.png" width="100" height="100"></td>
+        
+            <td>{{record.cameraid}}</td>
+            <td>{{record.timestamp}}</td>
+            <td><button class="btn btn-primary" ng-click="open(record.filename)">View</button></td>
+            
+         
+          </tr>
+          
+        </tbody>
+      </table>
+     
+  
+   <script type="text/ng-template" id="popup.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Image View</h3>
+        </div>
+        <div class="modal-body">
+        <center><img ng-src="http://localhost:9100/image/{{records}}.png" width="500" height="500" ></center>
+          </div>
+      <div class="modal-footer">
+      <button class="btn btn-danger" ng-click="cancel()">Cancel</button>  
+     </div>
+</script>
+
+
+  </div>
+
+    <dir-pagination-controls max-size="1000" direction-links="true" boundary-links="true"></dir-pagination-controls>
+
+  
+</body>
+</html>

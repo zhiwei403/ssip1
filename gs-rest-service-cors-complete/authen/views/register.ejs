@@ -1,0 +1,81 @@
+<html>
+
+<head>
+<title>Image Viewer</title>
+
+ <script type="text/javascript" src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.3.js"></script>
+<link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.min.css">
+<style>
+.center{
+    position:absolute;
+    display:block;
+    height:300px;
+    width:500px;
+    left:50%;
+    top:0%;
+    margin-top: 50px;
+    margin-left:-200px;
+    background-color:white;
+}
+
+li, a {
+    color: blue;
+}
+
+h1 {
+    color: black;
+}
+form, h1
+{
+text-align: center;
+}
+
+</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation" style="padding-left:130px;">
+
+<div class="container-fluid">
+
+<!-- Logo -->
+<div class="navbar-header">
+<a href="http://localhost:8082/viewImage2.html" class="navbar-brand">Image Viewer</a>
+</div>
+
+
+
+<!-- Menu Items -->
+<div>
+<ul class="nav navbar-nav">
+<li class="active">
+<a href="http://localhost:8081/register">Register User</a>
+</li>
+<li>
+<a href="http://localhost:8081/delete">Delete User</li></a>
+<li>
+<a href="http://localhost:8081/viewall">View all User</li></a>
+
+<li>
+<a href="http://localhost:8081/logout">Logout</li></a>
+</ul>
+</nav>
+</div>
+
+<div class="center">
+<h1><span class="glyphicon glyphicon-user">Register User</span></h1>
+<br>
+
+<form action="/register" method="POST">
+
+    <input type="text" name="username" placeholder="username"/>
+    <br>
+    <input type="password" name="password" placeholder="password"/>
+    <br>
+    <br>
+    <input type="submit" class="btn btn-primary" value="Register"/>
+</form>
+</div>
+</body>
+</html>
