@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+    
+        <link rel="stylesheet" href="http://bootswatch.com/cosmo/bootstrap.min.css"></link>
+    <style>
+.center{
+    position:absolute;
+    display:block;
+    height:300px;
+    width:500px;
+    left:50%;
+    top:0%;
+    margin-top: 50px;
+    margin-left:-200px;
+    background-color:white;
+}
+h1, p
+
+{
+color :black;
+}
+
+a
+
+{
+color :blue;
+}
+
+</style>
+    
+        <title>Welcome!</title>
+    </head>
+    <body>
+    <div class="center">
+        <center><h1>Welcome!</h1></center>
+        <br/>
+        
+        <p>Click <a th:href="@{/imageview}">here</a> to ImageViewer.</p>
+        
+         <p>Click <a th:href="@{/imageview2}">here</a> to ImageViewer.(Admin Access only)</p>
+        </div>
+    </body>
+</html>
+
+

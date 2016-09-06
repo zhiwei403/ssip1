@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+
+<head> 
+    <title>User Registration</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+<link rel="stylesheet" href="http://bootswatch.com/cosmo/bootstrap.min.css"></link>
+    <style>
+body {
+
+  background-color: #eee;
+}
+
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="username"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
+</head>  
+
+
+
+    <!--Make a form to register user-->
+ <body>
+ <!-- <nav class="navbar navbar-default" role="navigation" style="padding-left:130px;">
+<div class="navbar-header">
+<a href="http://localhost:8086/imageview2" class="navbar-brand">Image Viewer</a>
+</div>
+
+
+<ul class="nav navbar-nav">
+<li>
+<a href="http://localhost:8086/register">Register User</a>
+</li>
+
+<li>
+<a href="http://localhost:8086/viewall">View User</a></li>
+
+</ul>
+</nav>-->
+    <center> <h2 class="form-signin-heading">User Registration</h2></center>
+ <form class="form-signin" action="#" th:action="@{/register}" th:object="${user}" method="post">
+        <div><label> <input type="text" class="form-control" placeholder="Username" th:field="*{username}" /></label></div>
+     <div><label><input type="password" class="form-control" placeholder="Password" th:field="*{password}" /></label></div>
+        
+        
+
+        <p><input class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="Submit" /></p>
+        </form>
+    </body> 
+</html>
